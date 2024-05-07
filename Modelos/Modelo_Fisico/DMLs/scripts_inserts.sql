@@ -19,9 +19,14 @@ SELECT st.title,
 FROM ufc.show_temporaria st;
 
 
+        -- "REGEXP_SUBSTR(cast, '[^,]+'" -- Busca por substrings que não tenham ','
+        -- "DISTINCT" -- garante que apenas valores unicos sejam selecionados
+        --  "TRIM" -- remove espacos em branco no nome do ator
+        -- "JOIN(...) AS numbers" -- é uma subquerie usada para extrair elementos individualmente
+        -- "CHAR_LENGTH(cast) - CHAR_LENGTH(REPLACE(cast, ',', ''))" -- pegar o elemento 1 ate o elemento n
 
 INSERT INTO ufc.actor (actor_name)
-SELECT DISTINCT TRIM(REGEXP_SUBSTR(cast, '[^,]+', 1, n)) AS actor_name
+SELECT DISTINCT TRIM(REGEXP_SUBSTR(cast, '[^,]+', 1, n)) AS actor_name 
 FROM ufc.show_temporaria
 JOIN (
     SELECT 1 AS n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
