@@ -1,9 +1,0 @@
-FROM mysql:latest
-
-
-ENV MYSQL_ROOT_PASSWORD=root
-
-COPY ./scripts_tabelas.sql /docker-entrypoint-initdb.d/
-COPY ./show_temporaria.sql  /docker-entrypoint-initdb.d/
-
-
